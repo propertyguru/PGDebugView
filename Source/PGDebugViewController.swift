@@ -23,6 +23,7 @@ public class PGDebugViewController: UIViewController {
     }
     var plistPath: String?
     var plistObject: Any?
+    var customPlistObject: Any?
     public var loggedFilename: String?
     public var exportFilename: String = "debug"
     public var exportFolderName: String = "DEBUG-PLIST"
@@ -30,16 +31,18 @@ public class PGDebugViewController: UIViewController {
 	public var shouldExit: (() -> Void)?
     
     
-    public convenience init(plistPath: String, readOnly: Bool = false) {
+    public convenience init(plistPath: String, readOnly: Bool = false, customPlistObject: Any? = nil) {
         self.init()
         self.plistPath = plistPath
         self.readOnlyMode = readOnly
+        self.customPlistObject = customPlistObject
     }
     
-    public convenience init(plistObject: Any, readOnly: Bool = false) {
+    public convenience init(plistObject: Any, readOnly: Bool = false, customPlistObject: Any? = nil) {
         self.init()
         self.plistObject = plistObject
         self.readOnlyMode = readOnly
+        self.customPlistObject = customPlistObject
     }
     
     convenience init(cellModules: [PGDebuggableData]) {
@@ -89,11 +92,14 @@ public class PGDebugViewController: UIViewController {
     func loadFromPlistFile() {
         if let path = plistPath {
             cellModules = PGPlistReader(path: path).read()
-            tableView.reloadData()
         } else if let object = plistObject {
             cellModules = PGPlistReader(object: object).read()
-            tableView.reloadData()
         }
+        if let customObject = self.customPlistObject {
+            let customCellModules = PGPlistReader(object: customObject).read()
+            cellModules.append(contentsOf: customCellModules)
+        }
+        tableView.reloadData()
     }
     
     func updateLeftNavigationButtons() {
