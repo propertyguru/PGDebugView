@@ -17,7 +17,7 @@ class PGDebugViewHelper: NSObject {
     
     func presentDebugViewInRoot() {
         if let path = defaultDebugPlistPath() {
-            let debugVc = PGDebugViewController(plistPath: path)
+            let debugVc = PGDebugViewController(plistPath: path, customPlistObject: self.getCustomPlist())
             var oldRoot: UIViewController?
             debugVc.exportFolderName = exportFolderName
             debugVc.exportFilename = exportFileName
@@ -50,6 +50,12 @@ class PGDebugViewHelper: NSObject {
             return Bundle.main.path(forResource: "Debug", ofType: "plist")
         }
         return url.path
+    }
+    
+    func getCustomPlist() -> [String: String] {
+        var plist = [String: String]()
+        plist["ABTestingToken"] = "XYZ"
+        return plist
     }
     
 }
