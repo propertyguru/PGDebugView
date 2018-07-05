@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1F5FAB9F1F444EA300C289E6 /* PGDOpenLargeTextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5FAB9D1F444EA300C289E6 /* PGDOpenLargeTextViewController.swift */; };
 		1F5FABA01F444EA300C289E6 /* PGDOpenLargeTextViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F5FAB9E1F444EA300C289E6 /* PGDOpenLargeTextViewController.xib */; };
+		3C53629720EDCA5D00825F2D /* ApiControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C53629620EDCA5D00825F2D /* ApiControlView.swift */; };
 		D95E1BE71D88D63400F94976 /* PGDebugView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D95E1BDD1D88D63300F94976 /* PGDebugView.framework */; };
 		D95E1BEC1D88D63400F94976 /* PGDebugViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95E1BEB1D88D63400F94976 /* PGDebugViewTests.swift */; };
 		D95E1BEE1D88D63400F94976 /* PGDebugView.h in Headers */ = {isa = PBXBuildFile; fileRef = D95E1BE01D88D63300F94976 /* PGDebugView.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -35,6 +36,7 @@
 /* Begin PBXFileReference section */
 		1F5FAB9D1F444EA300C289E6 /* PGDOpenLargeTextViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PGDOpenLargeTextViewController.swift; sourceTree = "<group>"; };
 		1F5FAB9E1F444EA300C289E6 /* PGDOpenLargeTextViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PGDOpenLargeTextViewController.xib; sourceTree = "<group>"; };
+		3C53629620EDCA5D00825F2D /* ApiControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiControlView.swift; sourceTree = "<group>"; };
 		D95E1BDD1D88D63300F94976 /* PGDebugView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PGDebugView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D95E1BE01D88D63300F94976 /* PGDebugView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PGDebugView.h; sourceTree = "<group>"; };
 		D95E1BE11D88D63300F94976 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -100,6 +102,7 @@
 				EDDF69B51D95049800D6436A /* Supporting Files */,
 				1F5FAB9D1F444EA300C289E6 /* PGDOpenLargeTextViewController.swift */,
 				1F5FAB9E1F444EA300C289E6 /* PGDOpenLargeTextViewController.xib */,
+				3C53629620EDCA5D00825F2D /* ApiControlView.swift */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -255,6 +258,7 @@
 				1F5FAB9F1F444EA300C289E6 /* PGDOpenLargeTextViewController.swift in Sources */,
 				ED34CF821E02442800D44E8D /* PGDebugExport.swift in Sources */,
 				EDDF6B491D953E1200D6436A /* PGDebugViewController.swift in Sources */,
+				3C53629720EDCA5D00825F2D /* ApiControlView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
