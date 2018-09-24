@@ -44,9 +44,10 @@ public class PGDebugViewController: UIViewController {
         self.customPlistObject = customPlistObject
     }
     
-    convenience init(cellModules: [PGDebuggableData]) {
+    convenience init(cellModules: [PGDebuggableData],path plistPath: String) {
         self.init()
         self.cellModules = cellModules
+        self.plistPath = plistPath
     }
     
     static func debugVC(_ title: String?, cellModules: [PGDebuggableData]) -> PGDebugViewController? {
@@ -62,8 +63,26 @@ public class PGDebugViewController: UIViewController {
         view.addSubview(self.tableView)
         tableView.delegate = self
         tableView.dataSource = self
-        if cellModules.count == 0 { loadFromPlistFile() }
+        if cellModules.count == 0 {
+            cellModules = loadFromPlistFile()
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
         attachRefreshControlIfNeeded()
+    }
+    public func getCountry() -> String?{
+        let plistData = self.loadFromPlistFile()
+        for (_, dictObject) in plistData.enumerated() {
+            let data = dictObject as? PGDictionary
+            if data?.key == "AppConfig"{
+                guard let countryString = data?.value[5] as? PGString, countryString.value.count == 2 else{
+                    return nil
+                }
+                return countryString.value
+            }
+        }
+        return nil
     }
 
     public override func viewDidAppear(_ animated: Bool) {
@@ -76,7 +95,8 @@ public class PGDebugViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
-    func loadFromPlistFile() {
+    func loadFromPlistFile() -> [PGDebuggableData]{
+        var cellModules = [PGDebuggableData]()
         if let path = plistPath {
             cellModules = PGPlistReader(path: path).read()
         } else if let object = plistObject {
@@ -86,7 +106,7 @@ public class PGDebugViewController: UIViewController {
             let customCellModules = PGPlistReader(object: customObject).read()
             cellModules.append(contentsOf: customCellModules)
         }
-        tableView.reloadData()
+        return cellModules
     }
     
     func updateLeftNavigationButtons() {
@@ -142,7 +162,7 @@ public class PGDebugViewController: UIViewController {
     
     func selectModule(at index: Int) {
         func present(_ title: String, modules: [PGDebuggableData]) {
-            let debugVC = PGDebugViewController(cellModules: modules)
+            let debugVC = PGDebugViewController(cellModules: modules,path: self.plistPath ?? "")
             debugVC.title = title
             debugVC.readOnlyMode = self.readOnlyMode
             debugVC.didUpdateCellModules = { [weak self] updates in
@@ -220,11 +240,29 @@ public class PGDebugViewController: UIViewController {
                 
                 let scheme = "https://"
                 let domain = "api"
-                let url = ".propertyguru.com"
+                let url:String
+                let hostUrl:String
+                let country = self?.getCountry()
+                if country == "SG" {
+                    url = ".propertyguru.com.sg"
+                    hostUrl  = ".propertyguru.com"
+                }else if country == "ID" {
+                    url = ".rumah.com"
+                    hostUrl = ".propertyguru.com"
+                }else if country == "MY" {
+                    url = ".propertyguru.com.my"
+                    hostUrl = ".propertyguru.com"
+                }else if country == "TH" {
+                    url = ".ddproperty.com"
+                    hostUrl = ".propertyguru.com"
+                }else {
+                    url = ""
+                    hostUrl = ""
+                }
                 strongSelf.updateModule(strongSelf.cellModules[1], at: 1, with: scheme + domain + environment + url)
                 strongSelf.updateModule(strongSelf.cellModules[2], at: 2, with: scheme + domain + environment + url)
                 strongSelf.updateModule(strongSelf.cellModules[4], at: 4, with: scheme + domain + environment + url)
-                strongSelf.updateModule(strongSelf.cellModules[5], at: 5, with: scheme + domain + environment + url + ".sg")
+                strongSelf.updateModule(strongSelf.cellModules[5], at: 5, with: scheme + domain + environment + hostUrl)
                 strongSelf.tableView.reloadData()
             }
             tableView.refreshControl = refreshControl
