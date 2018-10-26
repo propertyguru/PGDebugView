@@ -55,6 +55,7 @@ public class PGDebugViewController: UIViewController {
         vc.title = title
         return vc
     }
+
     public override func viewDidLoad() {
         super.viewDidLoad()
         tableView.frame = view.frame
@@ -63,9 +64,8 @@ public class PGDebugViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         if cellModules.count == 0 { loadFromPlistFile() }
-        attachRefreshControlIfNeeded()
     }
-
+    
     public override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         updateLeftNavigationButtons()
@@ -183,60 +183,6 @@ public class PGDebugViewController: UIViewController {
 //        let navi = UINavigationController(rootViewController: vc)
 //        self.present(navi, animated: true, completion: nil)
 //    }
-    
-    @objc internal func refreshStatusChanged(control: UIControl) {
-        if #available(iOS 10.0, *) {
-            tableView.refreshControl?.beginRefreshing()
-            tableView.refreshControl?.endRefreshing()
-        }
-    }
-    
-    private func attachRefreshControlIfNeeded() {
-        guard let baseHost = cellModules[1] as? PGString,
-            let basehostDebug = cellModules[2] as? PGString,
-            let host = cellModules[4] as? PGString,
-            let newHost = cellModules[5] as? PGString,
-            baseHost.key == "basehost",
-            basehostDebug.key == "basehostDebug",
-            host.key == "host",
-            newHost.key == "newHost" else {
-            return
-        }
-        if #available(iOS 10.0, *) {
-            let refreshControl = ApiControlView(frame: CGRect.zero)
-            refreshControl.addTarget(self, action: #selector(PGDebugViewController.refreshStatusChanged(control:)), for: .valueChanged)
-            refreshControl.handler = { [weak self] direction in
-                guard let strongSelf = self else {
-                    return
-                }
-                let environment: String
-                if direction == .left {
-                    environment = ".staging"
-                } else if direction == .right {
-                    environment = ".integration"
-                } else {
-                    environment = ""
-                }
-                
-                let scheme = "https://"
-                let domain = "api"
-                let url = ".propertyguru.com"
-                strongSelf.updateModule(strongSelf.cellModules[1], at: 1, with: scheme + domain + environment + url)
-                strongSelf.updateModule(strongSelf.cellModules[2], at: 2, with: scheme + domain + environment + url)
-                strongSelf.updateModule(strongSelf.cellModules[4], at: 4, with: scheme + domain + environment + url)
-                strongSelf.updateModule(strongSelf.cellModules[5], at: 5, with: scheme + domain + environment + url + ".sg")
-                strongSelf.tableView.reloadData()
-            }
-            tableView.refreshControl = refreshControl
-            refreshControl.eventSource = tableView
-        }
-    }
-}
-
-extension PGDebugViewController: UIGestureRecognizerDelegate {
-    public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-        return true
-    }
 }
 
     // MARK: UITableViewDataSource, UITableViewDelegate
