@@ -11,7 +11,6 @@ import UIKit
 public class PGDebugViewController: UIViewController {
     
     let tableView: UITableView = UITableView(frame: CGRect.zero, style: .grouped)
-    let refreshControl: UIRefreshControl = UIRefreshControl()
     var didUpdateCellModules: (([PGDebuggableData]) -> Void)?
     var readOnlyMode: Bool = false
     var cellModules: [PGDebuggableData] = [] {
@@ -64,18 +63,6 @@ public class PGDebugViewController: UIViewController {
         view.addSubview(self.tableView)
         tableView.delegate = self
         tableView.dataSource = self
-        
-//        let title = "Pull to see GoogleAnalytics log"
-//        refreshControl.attributedTitle = NSAttributedString(string: title)
-//        refreshControl.addTarget(self,
-//                                 action: #selector(openGADLoggerViewController),
-//                                 for: .valueChanged)
-//        if #available(iOS 10.0, *) {
-//            tableView.refreshControl = refreshControl
-//        }
-//        else {
-//            tableView.addSubview(refreshControl)
-//        }
         if cellModules.count == 0 { loadFromPlistFile() }
     }
     
