@@ -14,8 +14,8 @@ open class PGDOpenLargeTextViewController: UIViewController, MFMailComposeViewCo
     @IBOutlet weak var mainLabel: UILabel!
     @IBOutlet weak var mainScrollView: UIScrollView!
     
-    static func instantiate( filename: String? ) -> PGDOpenLargeTextViewController {
-        let vc = PGDOpenLargeTextViewController(nibName: "PGDOpenLargeTextViewController", bundle: Bundle(for: PGDebugViewController.self) )
+    public static func instantiate(filename: String?) -> PGDOpenLargeTextViewController {
+        let vc = PGDOpenLargeTextViewController(nibName: "PGDOpenLargeTextViewController", bundle: Bundle(for: PGDebugViewController.self))
         vc.loggedFilename = filename
         return vc
     }
