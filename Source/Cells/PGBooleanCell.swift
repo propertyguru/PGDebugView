@@ -12,8 +12,7 @@ final class PGBooleanCell: UITableViewCell, PGDebuggableCell {
     let nameLabel: UILabel = UILabel()
     let toggle: UISwitch = UISwitch()
     
-    
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         contentView.addSubview(nameLabel)
         contentView.addSubview(toggle)
@@ -27,7 +26,6 @@ final class PGBooleanCell: UITableViewCell, PGDebuggableCell {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
     
     static func registerFor(tableView: UITableView) {
         tableView.register(PGBooleanCell.self, forCellReuseIdentifier: self.identifier)

@@ -71,10 +71,6 @@ public class PGDebugViewController: UIViewController {
         updateLeftNavigationButtons()
         if !readOnlyMode { updateRightNavigationButtons() }
     }
-
-    public override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
     
     func loadFromPlistFile() {
         if let path = plistPath {
@@ -97,7 +93,7 @@ public class PGDebugViewController: UIViewController {
     
     func updateRightNavigationButtons() {
         let editTitle = tableView.isEditing ? "Done" : "Edit"
-        let editStyle = tableView.isEditing ? UIBarButtonItemStyle.done : UIBarButtonItemStyle.plain
+        let editStyle: UIBarButtonItem.Style = tableView.isEditing ? .done : .plain
         let editButton = UIBarButtonItem(title: editTitle, style: editStyle, target: self, action: #selector(toggleEdit))
         var rightButtons = [editButton]
         if tableView.isEditing {
@@ -198,7 +194,7 @@ extension PGDebugViewController: UITableViewDataSource, UITableViewDelegate {
         return 44.0
     }
     public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableViewAutomaticDimension
+        return UITableView.automaticDimension
     }
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let module = cellModules[(indexPath as NSIndexPath).row]
@@ -217,13 +213,13 @@ extension PGDebugViewController: UITableViewDataSource, UITableViewDelegate {
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectModule(at: (indexPath as NSIndexPath).row)
     }
-    public func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
+    public func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
         return .delete
     }
     public func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
     }
-    public func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    public func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             deleteModule(at: (indexPath as NSIndexPath).row)
         }

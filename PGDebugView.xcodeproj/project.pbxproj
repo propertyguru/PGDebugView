@@ -97,9 +97,9 @@
 				EDDF6B421D953E1200D6436A /* PGDebugViewController.swift */,
 				ED34CF811E02442800D44E8D /* PGDebugExport.swift */,
 				EDDF6B431D953E1200D6436A /* PGPlistReader.swift */,
-				EDDF69B51D95049800D6436A /* Supporting Files */,
 				1F5FAB9D1F444EA300C289E6 /* PGDOpenLargeTextViewController.swift */,
 				1F5FAB9E1F444EA300C289E6 /* PGDOpenLargeTextViewController.xib */,
+				EDDF69B51D95049800D6436A /* Supporting Files */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -210,6 +210,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 			);
 			mainGroup = D95E1BD31D88D63200F94976;
@@ -410,8 +411,8 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
-				SWIFT_VERSION = 4.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
 		};
@@ -431,8 +432,8 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
-				SWIFT_VERSION = 4.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Release;
 		};

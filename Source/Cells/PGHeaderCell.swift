@@ -13,7 +13,7 @@ final class PGHeaderCell: UITableViewCell, PGDebuggableCell {
     
     var didUpdateValue: ((Any?) -> Void)?
     
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         contentView.addSubview(nameLabel)
         nameLabel.font = UIFont.systemFont(ofSize: 14.0)
