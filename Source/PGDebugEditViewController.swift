@@ -28,10 +28,6 @@ open class PGDebugEditViewController: UIViewController {
             checkJsonValidity(textView: textView)
         }
     }
-
-    open override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
     
     open override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)

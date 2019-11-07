@@ -23,7 +23,6 @@ public class PGDebugExport: NSObject {
             plistFilename = "\(fileName).plist"
         }
         return documentUrl.appendingPathComponent("\(folder)/\(plistFilename)")
-        
     }
     
     static func export(dictionary: [String: Any], folderName: String, plistFile: String) -> (Bool, URL?) {

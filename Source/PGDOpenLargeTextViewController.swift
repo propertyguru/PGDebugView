@@ -14,8 +14,8 @@ open class PGDOpenLargeTextViewController: UIViewController, MFMailComposeViewCo
     @IBOutlet weak var mainLabel: UILabel!
     @IBOutlet weak var mainScrollView: UIScrollView!
     
-    open static func instantiate( filename: String? ) -> PGDOpenLargeTextViewController {
-        let vc = PGDOpenLargeTextViewController(nibName: "PGDOpenLargeTextViewController", bundle: Bundle(for: PGDebugViewController.self) )
+    public static func instantiate(filename: String?) -> PGDOpenLargeTextViewController {
+        let vc = PGDOpenLargeTextViewController(nibName: "PGDOpenLargeTextViewController", bundle: Bundle(for: PGDebugViewController.self))
         vc.loggedFilename = filename
         return vc
     }
@@ -43,11 +43,6 @@ open class PGDOpenLargeTextViewController: UIViewController, MFMailComposeViewCo
         // Do any additional setup after loading the view.
     }
 
-    override open func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     @objc func clearLog() {
         guard let filename = loggedFilename else { return }
         let paths = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)
@@ -59,7 +54,6 @@ open class PGDOpenLargeTextViewController: UIViewController, MFMailComposeViewCo
         } catch {
             print( "remove error : [\(error)]")
         }
-        
     }
 
     @objc func exit() {
@@ -69,8 +63,8 @@ open class PGDOpenLargeTextViewController: UIViewController, MFMailComposeViewCo
     @objc func mail() {
         guard let filename = loggedFilename else { return }
         guard MFMailComposeViewController.canSendMail() else {
-            let alert = UIAlertController(title: "", message: "Need Mail configuration", preferredStyle: UIAlertControllerStyle.alert)
-            alert.addAction(UIAlertAction(title: "OKAY", style: UIAlertActionStyle.default) { action in
+            let alert = UIAlertController(title: "", message: "Need Mail configuration", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OKAY", style: .default) { action in
                 alert.dismiss(animated: true, completion: nil)
             })
             alert.present(alert, animated: true, completion: nil)
@@ -92,14 +86,4 @@ open class PGDOpenLargeTextViewController: UIViewController, MFMailComposeViewCo
     open func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         controller.dismiss(animated: true, completion: nil)
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
