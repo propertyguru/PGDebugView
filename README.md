@@ -2,7 +2,6 @@
 <!-- 
 [![CI Status](http://img.shields.io/travis/freesuraj/PGDebugView.svg?style=flat)](https://travis-ci.org/freesuraj/PGDebugView) -->
 [![Version](https://img.shields.io/cocoapods/v/PGDebugView.svg?style=flat)](http://cocoapods.org/pods/PGDebugView)
-[![Carthage Compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![License](https://img.shields.io/cocoapods/l/PGDebugView.svg?style=flat)](http://cocoapods.org/pods/PGDebugView)
 [![Platform](https://img.shields.io/cocoapods/p/PGDebugView.svg?style=flat)](http://cocoapods.org/pods/PGDebugView)
 
@@ -45,13 +44,6 @@ target '<Your Target Name>' do
 end
 ```
 
-### Carthage
-Add the following line to your Cartfile:
-
-```ruby
-github "freesuraj/PGDebugView"
-```
-
 ## Author
 
 [Suraj Pathak](https://twitter.com/iOSCook)
@@ -59,5 +51,3 @@ github "freesuraj/PGDebugView"
 ## License
 
 PGDebugView is available under the MIT license. See the LICENSE file for more info.
-
-
