@@ -9,8 +9,14 @@
 import UIKit
 
 open class PGDebugEditViewController: UIViewController {
+    
+    open override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return .portrait
+    }
+    
     var textDidUpdate: ((Any) -> Void)?
     var textView: UITextView!
+    
     open override func viewDidLoad() {
         super.viewDidLoad()
         textView = UITextView(frame: view.frame)

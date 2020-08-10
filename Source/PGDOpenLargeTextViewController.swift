@@ -11,6 +11,10 @@ import MessageUI
 
 open class PGDOpenLargeTextViewController: UIViewController, MFMailComposeViewControllerDelegate {
 
+    open override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return .portrait
+    }
+    
     @IBOutlet weak var mainLabel: UILabel!
     @IBOutlet weak var mainScrollView: UIScrollView!
     
