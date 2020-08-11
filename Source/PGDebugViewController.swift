@@ -10,6 +10,10 @@ import UIKit
 
 public class PGDebugViewController: UIViewController {
     
+    public override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return .portrait
+    }
+    
     let tableView: UITableView = UITableView(frame: CGRect.zero, style: .grouped)
     var didUpdateCellModules: (([PGDebuggableData]) -> Void)?
     var readOnlyMode: Bool = false
