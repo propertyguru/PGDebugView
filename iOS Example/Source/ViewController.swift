@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+final class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,14 +20,7 @@ class ViewController: UIViewController {
         button.center = view.center
     }
     
-    func openDebug() {
+    @objc private func openDebug() {
         PGDebugViewHelper.shared.presentDebugViewInRoot()
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
 }
-
